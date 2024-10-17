@@ -23,4 +23,14 @@ class JobController extends Controller
     {
         return view('jobs/create');
     }
+
+    public function show(string $id): View
+    {
+        return view('jobs/show', compact('id'));
+    }
+
+    public function store(Request $request)
+    {
+        dd($request->all());
+    }
 }
