@@ -1,3 +1,3 @@
 <x-layout>
-    <h1>Welcome</h1>
+    <h1 class="text-3xl font-bold underline">Welcome</h1>
 </x-layout>
