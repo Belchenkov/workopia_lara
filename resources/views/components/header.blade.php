@@ -4,25 +4,29 @@
             <a href="{{route('home.index')}}">Workopia</a>
         </h1>
         <nav class="hidden md:flex items-center space-x-4">
-            <a href="{{route('jobs.index')}}" class="text-white hover:underline py-2"
+            <a
+                href="{{route('jobs.index')}}"
+                class="text-white hover:underline py-2 {{ request()->is('jobs') ? 'text-yellow-400 font-bold' : '' }}"
             >All Jobs</a
             >
             <a
                 href="{{route('home.index')}}"
-                class="text-white hover:underline py-2"
+                class="text-white hover:underline py-2 {{ request()->is('jobs/saved') ? 'text-yellow-400 font-bold' : '' }}"
             >Saved Jobs</a
             >
-            <a href="{{route('home.index')}}" class="text-white hover:underline py-2"
+            <a
+                href="{{route('home.index')}}"
+                class="text-white hover:underline py-2 {{ request()->is('login') ? 'text-yellow-400 font-bold' : '' }}"
             >Login</a
             >
             <a
                 href="{{route('home.index')}}"
-                class="text-white hover:underline py-2"
+                class="text-white hover:underline py-2 {{ request()->is('register') ? 'text-yellow-400 font-bold' : '' }}"
             >Register</a
             >
             <a
                 href="{{route('home.index')}}"
-                class="text-white hover:underline py-2"
+                class="text-white hover:underline py-2 {{ request()->is('dashboard') ? 'text-yellow-400 font-bold' : '' }}"
             >
                 <i class="fa fa-gauge mr-1"></i> Dashboard
             </a>
