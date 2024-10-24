@@ -23,33 +23,12 @@
         id="mobile-menu"
         class="hidden md:hidden bg-blue-900 text-white mt-5 pb-4 space-y-2"
     >
-        <a href="{{route('jobs.index')}}" class="block px-4 py-2 hover:bg-blue-700"
-        >All Jobs</a
-        >
-        <a
-            href="{{route('home.index')}}"
-            class="block px-4 py-2 hover:bg-blue-700"
-        >Saved Jobs</a
-        >
-        <a href="{{route('home.index')}}" class="block px-4 py-2 hover:bg-blue-700"
-        >Login</a
-        >
-        <a
-            href="{{route('home.index')}}"
-            class="block px-4 py-2 hover:bg-blue-700"
-        >Register</a
-        >
-        <a
-            href="{{route('home.index')}}"
-            class="block text-white hover:underline py-2"
-        >
-            <i class="fa fa-gauge mr-1"></i> Dashboard
-        </a>
-        <a
-            href="{{route('jobs.create')}}"
-            class="block px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-black"
-        >
-            <i class="fa fa-edit"></i> Create Job
-        </a>
+        <x-nav-link route="jobs.index" :active="request()->is('jobs')" :mobile="true">All Jobs</x-nav-link>
+        <x-nav-link route="home.index" :active="request()->is('bookmarks')" :mobile="true">Saved Jobs</x-nav-link>
+        <x-nav-link route="home.index" :active="request()->is('dashboard')" :mobile="true">Dashbaord</x-nav-link>
+        <div class="pt-2"></div>
+        <x-button-link route='jobs.create' icon='edit' :block="true">Create Job</x-button-link>
+        <x-nav-link route="home.index" :active="request()->is('login')" :mobile="true">Login</x-nav-link>
+        <x-nav-link route="home.index" :active="request()->is('register')" :mobile="true">Register</x-nav-link>
     </nav>
 </header>
