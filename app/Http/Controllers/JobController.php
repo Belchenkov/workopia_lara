@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\JobRepository;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class JobController extends Controller
 {
+    public function __construct(
+        private JobRepository $r_job,
+    )
+    {}
+
     public function index(): View
     {
         $title = 'Available Jobs';
-        $jobs = [
-            'Software Engineer',
-            'Web Developer',
-            'Data Scientist',
-        ];
+        $jobs = $this->r_job->all();
 
         return view('jobs/index', compact('title', 'jobs'));
     }
