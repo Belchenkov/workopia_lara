@@ -1,3 +1,3 @@
 <x-layout>
-    <h1>Show {{$id}} </h1>
+    <h1>Show {{$job->title}} </h1>
 </x-layout>
