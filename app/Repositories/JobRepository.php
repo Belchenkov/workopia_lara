@@ -11,4 +11,9 @@ class JobRepository
     {
         return Job::all();
     }
+
+    public function create(array $data): Job
+    {
+        return Job::create($data);
+    }
 }

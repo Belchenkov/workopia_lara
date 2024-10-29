@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateJobRequest;
 use App\Models\Job;
 use App\Repositories\JobRepository;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class JobController extends Controller
 {
     public function __construct(
-        private JobRepository $r_job,
+        private readonly JobRepository $r_job,
     )
     {}
 
@@ -22,7 +23,7 @@ class JobController extends Controller
         return view('jobs/index', compact('title', 'jobs'));
     }
 
-    public function create()
+    public function create(): View
     {
         return view('jobs/create');
     }
@@ -32,8 +33,12 @@ class JobController extends Controller
         return view('jobs.show', compact('job'));
     }
 
-    public function store(Request $request)
+    public function store(CreateJobRequest $request): RedirectResponse
     {
-        dd($request->all());
+        $validated = $request->validated();
+
+        $this->r_job->create($validated);
+
+        return redirect()->route('jobs.index');
     }
 }
