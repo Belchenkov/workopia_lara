@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RandomUserSeeder::class);
         $this->call(RandomJobSeeder::class);
+        $this->call(JobSeeder::class);
     }
 }
