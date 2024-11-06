@@ -16,4 +16,9 @@ class JobRepository
     {
         return Job::create($data);
     }
+
+    public function getLatestLimit(int $limit): Collection
+    {
+        return Job::latest()->limit($limit)->get();
+    }
 }
