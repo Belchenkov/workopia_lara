@@ -37,8 +37,11 @@ class JobController extends Controller
     {
         $validated = $request->validated();
 
+        dd($validated);
         $this->r_job->create($validated);
 
-        return redirect()->route('jobs.index');
+        return redirect()
+            ->route('jobs.index')
+            ->with('success', 'Job listing created successfully!');
     }
 }
