@@ -37,7 +37,6 @@ class JobController extends Controller
     {
         $validated = $request->validated();
 
-        dd($validated);
         $this->r_job->create($validated);
 
         return redirect()

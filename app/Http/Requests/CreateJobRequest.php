@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 
 class CreateJobRequest extends FormRequest
 {
@@ -12,6 +15,31 @@ class CreateJobRequest extends FormRequest
     public function authorize(): bool
     {
         return true;
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+//            'user_id' => auth()->id(),
+            'user_id' => User::all()->random()->id,
+        ]);
+    }
+
+    /**
+     * Return validation errors as json response
+     *
+     * @param Validator $validator
+     */
+    protected function failedValidation(Validator $validator)
+    {
+        $response = [
+            'status' => 'failure',
+            'status_code' => 400,
+            'message' => 'Bad Request',
+            'errors' => $validator->errors(),
+        ];
+
+        return response()->json($response, 400);
     }
 
     /**
@@ -26,8 +54,8 @@ class CreateJobRequest extends FormRequest
             'description' => 'required|string',
             'salary' => 'required|integer',
             'tags' => 'nullable|string',
-            'job_type' => 'required|string',
-            'remote' => 'required|boolean',
+//            'job_type' => 'required|string',
+//            'remote' => 'required|boolean',
             'requirements' => 'nullable|string',
             'benefits' => 'nullable|string',
             'address' => 'nullable|string',
@@ -39,7 +67,8 @@ class CreateJobRequest extends FormRequest
             'company_name' => 'required|string',
             'company_description' => 'nullable|string',
             'company_logo' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:2048',
-            'company_website' => 'nullable|url'
+            'company_website' => 'nullable|url',
+            'user_id' => 'required|int'
         ];
     }
 }
