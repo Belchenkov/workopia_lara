@@ -8,13 +8,11 @@
             <img src="/storage/{{$job->company_logo}}" alt="{{$job->company_name}}" class="w-14" />
         @endif
         <div>
-            <h2 class="text-xl font-semibold">
-                {{$job->title}}
-            </h2>
+            <h2 class="text-xl font-semibold">{{$job->title}}</h2>
             <p class="text-sm text-gray-500">{{$job->job_type}}</p>
         </div>
     </div>
-    <p class="text-gray-700 text-lg mt-2">
+    <p class="text-gray-700 text-lg mt -2">
         {{Str::limit($job->description, 100)}}
     </p>
     <ul class="my-4 bg-gray-100 p-4 rounded">

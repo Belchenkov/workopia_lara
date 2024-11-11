@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateJobRequest;
 use App\Models\Job;
 use App\Repositories\JobRepository;
+use App\Services\FileJobServices;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -12,6 +13,7 @@ class JobController extends Controller
 {
     public function __construct(
         private readonly JobRepository $r_job,
+        private readonly FileJobServices $s_file_job,
     )
     {}
 
@@ -36,6 +38,10 @@ class JobController extends Controller
     public function store(CreateJobRequest $request): RedirectResponse
     {
         $validated = $request->validated();
+
+        if ($request->hasFile('company_logo')) {
+            $validated['company_logo'] = $this->s_file_job->uploadFile($request->file('company_logo'));
+        }
 
         $this->r_job->create($validated);
 
