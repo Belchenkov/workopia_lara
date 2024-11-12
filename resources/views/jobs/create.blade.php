@@ -13,15 +13,15 @@
 
             <x-inputs.text id="title" name="title" label="Job Title" placeholder="Software Engineer" />
 
-            <x-inputs.text id="description" name="description" label="Description"
+            <x-inputs.text-area  id="description" name="description" label="Description"
                                 placeholder="We are seeking a skilled and motivated Software Developer..." />
 
             <x-inputs.text id="salary" name="salary" label="Salary" type="number" placeholder="90000" />
 
-            <x-inputs.text id="requirements" name="requirements" label="Requirements"
+            <x-inputs.text-area id="requirements" name="requirements" label="Requirements"
                                 placeholder="Bachelor's degree in Computer Science" />
 
-            <x-inputs.text id="benefits" name="benefits" label="Benefits"
+            <x-inputs.text-area id="benefits" name="benefits" label="Benefits"
                                 placeholder="Health insurance, 401k, paid time off" />
 
 
@@ -41,6 +41,9 @@
             </h2>
 
             <x-inputs.text id="company_name" name="company_name" label="Company Name" placeholder="Enter Company Name" />
+
+            <x-inputs.text-area id="company_description" name="company_description" label="Company Description"
+                                placeholder="Enter Company Description" />
 
             <x-inputs.text id="company_website" name="company_website" label="Company Website" type="url"
                            placeholder="Enter Company Website" />
