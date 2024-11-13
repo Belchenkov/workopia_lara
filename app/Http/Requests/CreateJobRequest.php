@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\JsonResponse;
 
 class CreateJobRequest extends FormRequest
 {
@@ -29,6 +30,7 @@ class CreateJobRequest extends FormRequest
      * Return validation errors as json response
      *
      * @param Validator $validator
+     * @return JsonResponse
      */
     protected function failedValidation(Validator $validator)
     {
@@ -54,8 +56,8 @@ class CreateJobRequest extends FormRequest
             'description' => 'required|string',
             'salary' => 'required|integer',
             'tags' => 'nullable|string',
-//            'job_type' => 'required|string',
-//            'remote' => 'required|boolean',
+            'job_type' => 'required|string',
+            'remote' => 'required|boolean',
             'requirements' => 'nullable|string',
             'benefits' => 'nullable|string',
             'address' => 'nullable|string',
