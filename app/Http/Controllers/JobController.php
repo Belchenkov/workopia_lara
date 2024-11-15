@@ -35,6 +35,11 @@ class JobController extends Controller
         return view('jobs.show', compact('job'));
     }
 
+    public function edit(Job $job): View
+    {
+        return view('jobs.edit')->with('job', $job);
+    }
+
     public function store(CreateJobRequest $request): RedirectResponse
     {
         $validated = $request->validated();
