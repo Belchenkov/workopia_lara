@@ -17,6 +17,11 @@ class JobRepository
         return Job::create($data);
     }
 
+    public function update(int $id, array $data): int
+    {
+        return Job::where('id', $id)->update($data);
+    }
+
     public function getLatestLimit(int $limit): Collection
     {
         return Job::latest()->limit($limit)->get();

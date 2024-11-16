@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateJobRequest;
+use App\Http\Requests\UpdateJobRequest;
 use App\Models\Job;
 use App\Repositories\JobRepository;
 use App\Services\FileJobServices;
@@ -53,5 +54,23 @@ class JobController extends Controller
         return redirect()
             ->route('jobs.index')
             ->with('success', 'Job listing created successfully!');
+    }
+
+    public function update(UpdateJobRequest $request, Job $job): string
+    {
+        $validated = $request->validated();
+
+        if ($request->hasFile('company_logo')) {
+            $validated['company_logo'] = $this->s_file_job->deleteFile(
+                $request->file('company_logo'),
+                $job->company_logo
+            );
+        }
+
+        $this->r_job->update($job->id, $validated);
+
+        return redirect()
+            ->route('jobs.index')
+            ->with('success', 'Job listing updated successfully!');
     }
 }
