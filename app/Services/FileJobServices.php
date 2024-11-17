@@ -14,9 +14,14 @@ class FileJobServices
         return $file?->store('logos', 'public');
     }
 
-    public function deleteFile($file, string $path)
+    public function reUploadFile($file, string $path)
     {
         Storage::delete('public/logos/' . basename($path));
         return $file->store('logos', 'public');
+    }
+
+    public function deleteFile(string $path): void
+    {
+        Storage::delete($path);
     }
 }

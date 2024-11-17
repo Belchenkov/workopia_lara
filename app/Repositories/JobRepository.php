@@ -26,4 +26,9 @@ class JobRepository
     {
         return Job::latest()->limit($limit)->get();
     }
+
+    public function delete(int $id): int
+    {
+        return Job::destroy($id);
+    }
 }

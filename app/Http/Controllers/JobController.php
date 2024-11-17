@@ -61,7 +61,7 @@ class JobController extends Controller
         $validated = $request->validated();
 
         if ($request->hasFile('company_logo')) {
-            $validated['company_logo'] = $this->s_file_job->deleteFile(
+            $validated['company_logo'] = $this->s_file_job->reUploadFile(
                 $request->file('company_logo'),
                 $job->company_logo
             );
@@ -72,5 +72,17 @@ class JobController extends Controller
         return redirect()
             ->route('jobs.index')
             ->with('success', 'Job listing updated successfully!');
+    }
+
+    public function destroy(Job $job): RedirectResponse
+    {
+        // If logo, then delete it
+        if ($job->company_logo) {
+            $this->s_file_job->deleteFile('public/logos/' . $job->company_logo);
+        }
+
+        $this->r_job->delete($job->id);
+
+        return redirect()->route('jobs.index')->with('success', 'Job listing deleted successfully!');
     }
 }

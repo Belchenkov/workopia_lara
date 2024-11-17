@@ -1,4 +1,3 @@
-
 @props([
     'type',
     'message',
