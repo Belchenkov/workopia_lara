@@ -6,8 +6,8 @@
         <nav class="hidden md:flex items-center space-x-4">
             <x-nav-link route="jobs.index" :active="request()->is('jobs')">All Jobs</x-nav-link>
             <x-nav-link route="home.index" :active="request()->is('jobs/saved')">Saved Jobs</x-nav-link>
-            <x-nav-link route="home.index" :active="request()->is('login')">Login</x-nav-link>
-            <x-nav-link route="home.index" :active="request()->is('register')">Register</x-nav-link>
+            <x-nav-link route="auth.login" :active="request()->is('login')">Login</x-nav-link>
+            <x-nav-link route="auth.register" :active="request()->is('register')">Register</x-nav-link>
             <x-nav-link route="home.index" :active="request()->is('dashboard')" icon="gauge">Dashboard</x-nav-link>
             <x-button-link route='jobs.create' icon='edit'>Create Job</x-button-link>
         </nav>

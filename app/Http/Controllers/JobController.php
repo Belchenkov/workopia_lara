@@ -18,6 +18,8 @@ class JobController extends Controller
     )
     {}
 
+    // @desc    Show all job listings
+    // @route   GET /jobs
     public function index(): View
     {
         $title = 'Available Jobs';
@@ -26,21 +28,29 @@ class JobController extends Controller
         return view('jobs/index', compact('title', 'jobs'));
     }
 
+    // @desc    Show create job form
+    // @route   GET /jobs/create
     public function create(): View
     {
         return view('jobs/create');
     }
 
+    // @desc    Display a single job listing
+    // @route   GET /jobs/{$id}
     public function show(Job $job): View
     {
         return view('jobs.show', compact('job'));
     }
 
+    // @desc    Show edit job form
+    // @route   GET /jobs/{$id}/edit
     public function edit(Job $job): View
     {
         return view('jobs.edit')->with('job', $job);
     }
 
+    // @desc    Save job to database
+    // @route   POST /jobs
     public function store(CreateJobRequest $request): RedirectResponse
     {
         $validated = $request->validated();
@@ -56,6 +66,8 @@ class JobController extends Controller
             ->with('success', 'Job listing created successfully!');
     }
 
+    // @desc    Update job listing
+    // @route   PUT /jobs/{$id}
     public function update(UpdateJobRequest $request, Job $job): string
     {
         $validated = $request->validated();
@@ -74,6 +86,8 @@ class JobController extends Controller
             ->with('success', 'Job listing updated successfully!');
     }
 
+    // @desc    Delete a job listing
+    // @route   DELETE /jobs/{$id}
     public function destroy(Job $job): RedirectResponse
     {
         // If logo, then delete it
