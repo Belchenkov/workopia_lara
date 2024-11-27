@@ -5,11 +5,17 @@
         </h1>
         <nav class="hidden md:flex items-center space-x-4">
             <x-nav-link route="jobs.index" :active="request()->is('jobs')">All Jobs</x-nav-link>
+            @auth
             <x-nav-link route="home.index" :active="request()->is('jobs/saved')">Saved Jobs</x-nav-link>
-            <x-nav-link route="auth.login" :active="request()->is('login')">Login</x-nav-link>
-            <x-nav-link route="auth.register" :active="request()->is('register')">Register</x-nav-link>
+
+            <x-logout-button />
+
             <x-nav-link route="home.index" :active="request()->is('dashboard')" icon="gauge">Dashboard</x-nav-link>
             <x-button-link route='jobs.create' icon='edit'>Create Job</x-button-link>
+            @else
+            <x-nav-link route="auth.login" :active="request()->is('login')">Login</x-nav-link>
+            <x-nav-link route="auth.register" :active="request()->is('register')">Register</x-nav-link>
+            @endauth
         </nav>
         <button
             id="hamburger"
@@ -27,11 +33,17 @@
         @click.away="open = false"
     >
         <x-nav-link route="jobs.index" :active="request()->is('jobs')" :mobile="true">All Jobs</x-nav-link>
-        <x-nav-link route="home.index" :active="request()->is('bookmarks')" :mobile="true">Saved Jobs</x-nav-link>
-        <x-nav-link route="home.index" :active="request()->is('dashboard')" :mobile="true">Dashbaord</x-nav-link>
-        <div class="pt-2"></div>
-        <x-button-link route='jobs.create' icon='edit' :block="true">Create Job</x-button-link>
-        <x-nav-link route="home.index" :active="request()->is('login')" :mobile="true">Login</x-nav-link>
-        <x-nav-link route="home.index" :active="request()->is('register')" :mobile="true">Register</x-nav-link>
+        @auth
+            <x-nav-link route="home.index" :active="request()->is('bookmarks')" :mobile="true">Saved Jobs</x-nav-link>
+            <x-nav-link route="home.index" :active="request()->is('dashboard')" :mobile="true">Dashbaord</x-nav-link>
+
+            <x-logout-button />
+
+            <div class="pt-2"></div>
+            <x-button-link route='jobs.create' icon='edit' :block="true">Create Job</x-button-link>
+        @else
+            <x-nav-link route="auth.login" :active="request()->is('login')" :mobile="true">Login</x-nav-link>
+            <x-nav-link route="auth.logout" :active="request()->is('register')" :mobile="true">Register</x-nav-link>
+        @endauth
     </nav>
 </header>
