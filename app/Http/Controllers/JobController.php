@@ -32,7 +32,7 @@ class JobController extends Controller
     // @route   GET /jobs/create
     public function create(): View
     {
-        return view('jobs/create');
+        return view('jobs.create');
     }
 
     // @desc    Display a single job listing

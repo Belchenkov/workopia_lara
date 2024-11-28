@@ -31,7 +31,7 @@ class RegisterController extends Controller
         $this->r_user->create($validated);
 
         return redirect()
-            ->route('auth.login')
+            ->route('login')
             ->with('success', 'You are registered and can log in!');
     }
 }

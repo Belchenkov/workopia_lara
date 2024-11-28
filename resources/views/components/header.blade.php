@@ -13,7 +13,7 @@
             <x-nav-link route="home.index" :active="request()->is('dashboard')" icon="gauge">Dashboard</x-nav-link>
             <x-button-link route='jobs.create' icon='edit'>Create Job</x-button-link>
             @else
-            <x-nav-link route="auth.login" :active="request()->is('login')">Login</x-nav-link>
+            <x-nav-link route="login" :active="request()->is('login')">Login</x-nav-link>
             <x-nav-link route="auth.register" :active="request()->is('register')">Register</x-nav-link>
             @endauth
         </nav>
@@ -42,7 +42,7 @@
             <div class="pt-2"></div>
             <x-button-link route='jobs.create' icon='edit' :block="true">Create Job</x-button-link>
         @else
-            <x-nav-link route="auth.login" :active="request()->is('login')" :mobile="true">Login</x-nav-link>
+            <x-nav-link route="login" :active="request()->is('login')" :mobile="true">Login</x-nav-link>
             <x-nav-link route="auth.logout" :active="request()->is('register')" :mobile="true">Register</x-nav-link>
         @endauth
     </nav>

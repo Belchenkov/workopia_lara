@@ -1,4 +1,3 @@
-
 <x-layout>
     <x-slot name="title">Create Job</x-slot>
     <div class="bg-white mx-auto p-8 rounded-lg shadow-md w-full md:max-w-3xl">
