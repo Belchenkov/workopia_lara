@@ -21,8 +21,7 @@ class CreateJobRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-//            'user_id' => auth()->id(),
-            'user_id' => User::all()->random()->id,
+            'user_id' => auth()->id(),
         ]);
     }
 
