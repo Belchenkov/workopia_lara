@@ -7,11 +7,14 @@ use App\Http\Requests\UpdateJobRequest;
 use App\Models\Job;
 use App\Repositories\JobRepository;
 use App\Services\FileJobServices;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class JobController extends Controller
 {
+    use AuthorizesRequests;
+
     public function __construct(
         private readonly JobRepository $r_job,
         private readonly FileJobServices $s_file_job,
@@ -46,6 +49,9 @@ class JobController extends Controller
     // @route   GET /jobs/{$id}/edit
     public function edit(Job $job): View
     {
+        // Check if user is authorized
+        $this->authorize('update', $job);
+
         return view('jobs.edit')->with('job', $job);
     }
 
@@ -70,6 +76,9 @@ class JobController extends Controller
     // @route   PUT /jobs/{$id}
     public function update(UpdateJobRequest $request, Job $job): string
     {
+        // Check if user is authorized
+        $this->authorize('update', $job);
+
         $validated = $request->validated();
 
         if ($request->hasFile('company_logo')) {
@@ -90,6 +99,9 @@ class JobController extends Controller
     // @route   DELETE /jobs/{$id}
     public function destroy(Job $job): RedirectResponse
     {
+        // Check if user is authorized
+        $this->authorize('delete', $job);
+
         // If logo, then delete it
         if ($job->company_logo) {
             $this->s_file_job->deleteFile('public/logos/' . $job->company_logo);
