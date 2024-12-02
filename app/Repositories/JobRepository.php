@@ -31,4 +31,9 @@ class JobRepository
     {
         return Job::destroy($id);
     }
+
+    public function getByUserWith(int $user_id): Collection
+    {
+        return Job::where('user_id', $user_id)->get();
+    }
 }
