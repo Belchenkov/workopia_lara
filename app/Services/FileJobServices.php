@@ -9,15 +9,15 @@ use Symfony\Component\HttpFoundation\File\File;
 
 class FileJobServices
 {
-    public function uploadFile($file)
+    public function uploadFile($file, string $folder, string $root_folder)
     {
-        return $file?->store('logos', 'public');
+        return $file?->store($folder, $root_folder);
     }
 
-    public function reUploadFile($file, string $path)
+    public function reUploadFile($file, string $path, string $sub_folder, string $root_folder)
     {
-        Storage::delete('public/logos/' . basename($path));
-        return $file->store('logos', 'public');
+        Storage::delete($path);
+        return $file->store($sub_folder, $root_folder);
     }
 
     public function deleteFile(string $path): void

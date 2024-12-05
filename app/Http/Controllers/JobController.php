@@ -62,7 +62,11 @@ class JobController extends Controller
         $validated = $request->validated();
 
         if ($request->hasFile('company_logo')) {
-            $validated['company_logo'] = $this->s_file_job->uploadFile($request->file('company_logo'));
+            $validated['company_logo'] = $this->s_file_job->uploadFile(
+                $request->file('company_logo'),
+                'logos',
+                'public'
+            );
         }
 
         $this->r_job->create($validated);
@@ -84,7 +88,9 @@ class JobController extends Controller
         if ($request->hasFile('company_logo')) {
             $validated['company_logo'] = $this->s_file_job->reUploadFile(
                 $request->file('company_logo'),
-                $job->company_logo
+                'public/logos/' . basename($job->company_logo),
+                'logos',
+                'public'
             );
         }
 
