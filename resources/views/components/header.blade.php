@@ -10,7 +10,23 @@
 
             <x-logout-button />
 
-            <x-nav-link route="home.index" :active="request()->is('dashboard')" icon="gauge">Dashboard</x-nav-link>
+            <div class="flex items-center space-x-3">
+                <a href="{{route('dashboard')}}">
+                    @if(Auth::user()->avatar)
+                        <img
+                            src="{{asset('storage/' . Auth::user()->avatar)}}"
+                            alt="{{Auth::user()->name}}"
+                            class="w-10 h-10 rounded-full"
+                        >
+                    @else
+                        <img
+                            src="{{asset('storage/avatars/default-avatar.png')}}"
+                            alt="{{Auth::user()->name}}"
+                            class="w-10 h-10 rounded-full"
+                        >
+                    @endif
+                </a>
+            </div>
             <x-button-link route='jobs.create' icon='edit'>Create Job</x-button-link>
             @else
             <x-nav-link route="login" :active="request()->is('login')">Login</x-nav-link>
