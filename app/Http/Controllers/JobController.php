@@ -26,7 +26,7 @@ class JobController extends Controller
     public function index(): View
     {
         $title = 'Available Jobs';
-        $jobs = $this->r_job->all();
+        $jobs = $this->r_job->paginate();
 
         return view('jobs/index', compact('title', 'jobs'));
     }

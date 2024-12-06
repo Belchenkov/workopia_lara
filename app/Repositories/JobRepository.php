@@ -4,12 +4,18 @@ namespace App\Repositories;
 
 use App\Models\Job;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class JobRepository
 {
     public function all(): Collection
     {
         return Job::all();
+    }
+
+    public function paginate(int $per_page = 9): LengthAwarePaginator
+    {
+        return Job::latest()->paginate($per_page);
     }
 
     public function create(array $data): Job
