@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Job;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -41,5 +42,12 @@ class JobRepository
     public function getByUserWith(int $user_id): Collection
     {
         return Job::where('user_id', $user_id)->get();
+    }
+
+    public function paginateBookmarks(User $user, int $paginate = 9): LengthAwarePaginator
+    {
+        return $user->bookmarkedJobs()
+            ->orderBy('job_user_bookmarks.created_at', 'desc')
+            ->paginate($paginate);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
@@ -17,12 +18,16 @@ Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
 Route::middleware(['auth'])->group(function () {
     Route::get('/jobs/create', [JobController::class, 'create'])->name('jobs.create');
     Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit');
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/jobs', [JobController::class, 'store'])->name('jobs.store');
     Route::put('/jobs/{job}', [JobController::class, 'update'])->name('jobs.update');
     Route::delete('/jobs/{job}', [JobController::class, 'destroy'])->name('jobs.destroy');
-    Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
+
+    Route::get('/bookmarks', [BookmarkController::class, 'index'])->name('bookmarks.index');
 });
 
 // Guests

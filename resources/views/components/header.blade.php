@@ -6,7 +6,7 @@
         <nav class="hidden md:flex items-center space-x-4">
             <x-nav-link route="jobs.index" :active="request()->is('jobs')">All Jobs</x-nav-link>
             @auth
-            <x-nav-link route="home.index" :active="request()->is('jobs/saved')">Saved Jobs</x-nav-link>
+            <x-nav-link route="bookmarks.index" :active="request()->is('bookmarks')">Saved Jobs</x-nav-link>
 
             <x-logout-button />
 
@@ -50,7 +50,7 @@
     >
         <x-nav-link route="jobs.index" :active="request()->is('jobs')" :mobile="true">All Jobs</x-nav-link>
         @auth
-            <x-nav-link route="home.index" :active="request()->is('bookmarks')" :mobile="true">Saved Jobs</x-nav-link>
+            <x-nav-link route="bookmarks.index" :active="request()->is('bookmarks')" :mobile="true">Saved Jobs</x-nav-link>
             <x-nav-link route="home.index" :active="request()->is('dashboard')" :mobile="true">Dashbaord</x-nav-link>
 
             <x-logout-button />
