@@ -50,4 +50,9 @@ class JobRepository
             ->orderBy('job_user_bookmarks.created_at', 'desc')
             ->paginate($paginate);
     }
+
+    public function existsBookmarkedJobsByUser(User $user, int $job_id): bool
+    {
+        return $user->bookmarkedJobs()->where('job_id', $job_id)->exists();
+    }
 }

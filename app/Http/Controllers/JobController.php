@@ -42,7 +42,9 @@ class JobController extends Controller
     // @route   GET /jobs/{$id}
     public function show(Job $job): View
     {
-        return view('jobs.show', compact('job'));
+        $is_bookmarked_jobs_exists = $this->r_job->existsBookmarkedJobsByUser(auth()->user(), $job->id);
+
+        return view('jobs.show', compact('job', 'is_bookmarked_jobs_exists'));
     }
 
     // @desc    Show edit job form
