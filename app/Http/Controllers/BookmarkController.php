@@ -24,7 +24,9 @@ class BookmarkController extends Controller
     // @route   POST /bookmarks/{job}
     public function store(Job $job): RedirectResponse
     {
-        $user = auth()->user();
+        if (!$user = auth()->user()) {
+            return back()->with('error', 'You are not logged in!');
+        }
 
         // Check if the job is already bookmarked
         if ($this->r_job->existsBookmarkedJobsByUser($user, $job->id)) {

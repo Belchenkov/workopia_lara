@@ -42,7 +42,8 @@ class JobController extends Controller
     // @route   GET /jobs/{$id}
     public function show(Job $job): View
     {
-        $is_bookmarked_jobs_exists = $this->r_job->existsBookmarkedJobsByUser(auth()->user(), $job->id);
+        $user = auth()->user();
+        $is_bookmarked_jobs_exists = $user && $this->r_job->existsBookmarkedJobsByUser($user, $job->id);
 
         return view('jobs.show', compact('job', 'is_bookmarked_jobs_exists'));
     }
