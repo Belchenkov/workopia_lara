@@ -41,7 +41,9 @@ class JobRepository
 
     public function getByUserWith(int $user_id): Collection
     {
-        return Job::where('user_id', $user_id)->get();
+        return Job::where('user_id', $user_id)
+            ->with('applicants')
+            ->get();
     }
 
     public function paginateBookmarks(User $user, int $paginate = 9): LengthAwarePaginator
