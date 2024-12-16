@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/bookmarks/{job}', [BookmarkController::class, 'destroy'])->name('bookmarks.destroy');
 
     Route::post('/jobs/{job}/apply', [ApplicantController::class, 'store'])->name('applicant.store');
+    Route::delete('/applicants/{applicant}', [ApplicantController::class, 'destroy'])->name('applicant.destroy');
 });
 
 // Guests
