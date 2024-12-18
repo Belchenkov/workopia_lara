@@ -57,4 +57,28 @@ class JobRepository
     {
         return $user->bookmarkedJobs()->where('job_id', $job_id)->exists();
     }
+
+    public function search(?string $keywords, ?string $location, int $paginate = 12): LengthAwarePaginator
+    {
+        $query = Job::query();
+
+        if ($keywords) {
+            $query->where(function ($q) use ($keywords) {
+                $q->whereRaw('LOWER(title) like ?', ['%' . $keywords . '%'])
+                    ->orWhereRaw('LOWER(description) like ?', ['%' . $keywords . '%'])
+                    ->orWhereRaw('LOWER(tags) like ?', ['%' . $keywords . '%']);
+            });
+        }
+
+        if ($location) {
+            $query->where(function ($q) use ($location) {
+                $q->whereRaw('LOWER(address) like ?', ['%' . $location . '%'])
+                    ->orWhereRaw('LOWER(city) like ?', ['%' . $location . '%'])
+                    ->orWhereRaw('LOWER(state) like ?', ['%' . $location . '%'])
+                    ->orWhereRaw('LOWER(zipcode) like ?', ['%' . $location . '%']);
+            });
+        }
+
+        return $query->paginate($paginate);
+    }
 }

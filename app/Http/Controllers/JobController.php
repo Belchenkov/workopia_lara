@@ -9,6 +9,7 @@ use App\Repositories\JobRepository;
 use App\Services\FileJobServices;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class JobController extends Controller
@@ -126,5 +127,17 @@ class JobController extends Controller
         }
 
         return redirect()->route($route_redirect)->with('success', 'Job listing deleted successfully!');
+    }
+
+    // @desc    Search job listings
+    // @route   GET /jobs/search
+    public function search(Request $request): View
+    {
+        $jobs = $this->r_job->search(
+            strtolower($request->input('keywords')),
+            strtolower($request->input('location'))
+        );
+
+        return view('jobs.index')->with('jobs', $jobs);
     }
 }
