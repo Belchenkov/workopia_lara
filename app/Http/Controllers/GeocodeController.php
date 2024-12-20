@@ -14,7 +14,7 @@ class GeocodeController extends Controller
         $address = $request->input('address');
 
         $response = Http::get("https://api.mapbox.com/geocoding/v5/mapbox.places/{$address}.json", [
-            'access_token' => config('mapbox.access_token'),
+            'access_token' => config('app.mapbox_api_key'),
         ]);
 
         return $response->json([

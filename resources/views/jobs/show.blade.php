@@ -168,7 +168,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Your Mapbox access token
-        mapboxgl.accessToken = "{{ env('MAPBOX_API_KEY') }}";
+        mapboxgl.accessToken = "{{ config('app.mapbox_api_key') }}";
 
         // Initialize the map
         const map = new mapboxgl.Map({
