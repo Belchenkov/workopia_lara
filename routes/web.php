@@ -3,6 +3,7 @@
 use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GeocodeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LoginController;
@@ -15,6 +16,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/jobs/search', [JobController::class, 'search'])->name('jobs.search');
 Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
 Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
+
+Route::get('/geocode', [GeocodeController::class, 'geocode']);
 
 // Auth
 Route::middleware(['auth'])->group(function () {

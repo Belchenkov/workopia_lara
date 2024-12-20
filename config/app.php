@@ -123,4 +123,6 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'mapbox_api_key' => env('MAPBOX_API_KEY'),
+
 ];
