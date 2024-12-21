@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreApplicantRequest;
+use App\Mail\JobApplied;
 use App\Models\Job;
 use App\Repositories\ApplicantRepository;
 use App\Services\FileJobServices;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Mail;
 
 class ApplicantController extends Controller
 {
@@ -44,6 +46,8 @@ class ApplicantController extends Controller
         }
 
         $this->r_applicant->create($validatedData);
+
+         Mail::to($job->user->email)->send(new JobApplied());
 
         return redirect()->back()->with('success', 'Your application has been submitted');
     }
